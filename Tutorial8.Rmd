@@ -52,7 +52,44 @@ library(bookdown)
 
 \section*{Country XX2 and YY2}
 
-\section*{Country XX3 and YY3}
+\section*{Country Canada and France}
 
+```{r}
+df <- read_csv("data/worldwidecases.csv")
+head(df)
+```
 
+```{r}
+target <- c("Canada", "France")
+```
+
+```{r}
+data <- df %>% 
+  dplyr::filter(countriesAndTerritories %in% target) 
+```
+
+```{r}
+data2 <- data %>% 
+  select(dateRep, day, month, year, cases, deaths, countriesAndTerritories)
+```
+
+```{r}
+data2 %>% 
+  dplyr::filter(countriesAndTerritories == "Canada") %>% 
+  group_by(month) %>% 
+  summarise(Total_cases = sum(cases)) %>% 
+  kable(caption = "Statics Summary - Canada" ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+  
+```
+
+```{r}
+data2 %>% 
+  dplyr::filter(countriesAndTerritories == "France") %>% 
+  group_by(month) %>% 
+  summarise(Total_cases = sum(cases)) %>% 
+  kable(caption = "Statics Summary - France" ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+  
+```
 
