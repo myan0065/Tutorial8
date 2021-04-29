@@ -93,3 +93,21 @@ data2 %>%
   
 ```
 
+```{r}
+data2 %>% 
+  ggplot(aes(x = month, y = cases, colour = countriesAndTerritories)) +
+  geom_line() +
+  xlab("Month") +
+  ylab("Cases") +
+  ggtitle("Number of cases - Canada & France")
+```
+
+```{r}
+data2 %>% 
+  ggplot(aes(x = month, y = deaths, colour = countriesAndTerritories)) +
+  geom_line() +
+  xlab("Month") +
+  ylab("Cases") +
+  ggtitle("Number of deaths - Canada & France")
+```
+
